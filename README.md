@@ -16,7 +16,7 @@
 ### Fundamentals of Web apps
 
 | **Lesson**               | **Status** |
-|:------------------------:|:----------:|
+|:-------------------------|:----------:|
 |       General info       |  Finished  |
 | Fundamentals of Web apps |  Finished  |
 | **Finished in:**         | **2 hours**|
@@ -26,7 +26,7 @@
 ### Introduction to React
 
 | **Lesson**                                 | **Status** |
-|:------------------------------------------:|:----------:|
+|:-------------------------------------------|:----------:|
 |            Introduction to React           |            |
 |                 JavaScript                 |            |
 | Component state, event handlers            |            |
@@ -38,7 +38,7 @@
 ### Communicating with server
 
 | **Lesson**                      | **Status** |
-|:-------------------------------:|:----------:|
+|:--------------------------------|:----------:|
 | Rendering a collection, modules |            |
 |              Forms              |            |
 | Getting data from server        |            |
@@ -52,7 +52,7 @@
 
 
 | **Lesson**                | **Status** |
-|:-------------------------:|:----------:|
+|:--------------------------|:----------:|
 |    Node.js and Express    |            |
 | Deploying app to internet |            |
 | Saving data to MongoDB    |            |
@@ -64,7 +64,7 @@
 ### Testing Express servers, user administration
 
 | **Lesson**                                                | **Status** |
-|:---------------------------------------------------------:|:----------:|
+|:----------------------------------------------------------|:----------:|
 | Structure of backend application, introduction to testing |            |
 |                    Testing the backend                    |            |
 | User administration                                       |            |
@@ -76,7 +76,7 @@
 ### Testing React apps
 
 | **Lesson**                   | **Status** |
-|:----------------------------:|:----------:|
+|:-----------------------------|:----------:|
 |       Login in frontend      |            |
 | props.children and proptypes |            |
 | Testing React apps           |            |
@@ -88,7 +88,7 @@
 ### State management with Redux
 
 | **Lesson**                                       | **Status** |
-|:------------------------------------------------:|:----------:|
+|:-------------------------------------------------|:----------:|
 |            Flux-architecture and Redux           |            |
 |                   Many reducers                  |            |
 | Communicating with server in a redux application |            |
@@ -100,7 +100,7 @@
 ### React router, custom hooks, styling app with CSS and webpack
 
 | **Lesson**                        | **Status** |
-|:---------------------------------:|:----------:|
+|:----------------------------------|:----------:|
 |            React-router           |            |
 |            Custom hooks           |            |
 | More about styles                 |            |
