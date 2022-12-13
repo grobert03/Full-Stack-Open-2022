@@ -37,18 +37,22 @@ const App = () => {
 }
 
 const Statistics = ({good, bad, neutral, clicks}) => {
-  return (
-    <div>
-      <Display value={good} text="good"/>
-      <Display value={neutral} text="neutral"/>
-      <Display value={bad} text="bad"/>
-      <Display value={clicks} text="all"/>
+  if (clicks == 0) {
+    return <p>No feedback given</p>
+  } else {
+    return (
+      <div>
+        <Display value={good} text="good"/>
+        <Display value={neutral} text="neutral"/>
+        <Display value={bad} text="bad"/>
+        <Display value={clicks} text="all"/>
 
-      <Average good={good} bad={bad} clicks={clicks}/>
+        <Average good={good} bad={bad} clicks={clicks}/>
 
-      <Positive good={good} clicks={clicks}/>
-    </div>
-  )
+        <Positive good={good} clicks={clicks}/>
+      </div>
+    )
+  }
 }
 
 const Header = ({value}) => {
