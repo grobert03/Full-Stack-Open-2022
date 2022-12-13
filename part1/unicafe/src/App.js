@@ -42,17 +42,24 @@ const Statistics = ({good, bad, neutral, clicks}) => {
   } else {
     return (
       <div>
-        <Display value={good} text="good"/>
-        <Display value={neutral} text="neutral"/>
-        <Display value={bad} text="bad"/>
-        <Display value={clicks} text="all"/>
-
-        <Average good={good} bad={bad} clicks={clicks}/>
-
-        <Positive good={good} clicks={clicks}/>
+        <StatisticLine text="good" value={good}/>
+        <StatisticLine text="neutral" value={neutral}/>
+        <StatisticLine text="bad" value={bad}/>
+        <StatisticLine text="all" value={clicks}/>
+        <StatisticLine text="average" value={(good - bad) / clicks}/>
+        <StatisticLine text="positive" value={good / clicks * 100}/>
       </div>
     )
   }
+}
+
+const StatisticLine = ({text, value}) => {
+  if (text === "positive") {
+    value = value + " %";
+  }
+  return (
+    <p>{text} {value}</p>
+  )
 }
 
 const Header = ({value}) => {
@@ -62,24 +69,6 @@ const Header = ({value}) => {
 const Button = ({handleClick, text}) => {
   return (
     <button onClick={handleClick}>{text}</button>
-  )
-}
-
-const Display = ({value, text}) => {
-  return (
-    <p>{text} {value}</p>
-  )
-}
-
-const Average = ({good, bad, clicks}) => {
-  return (
-    <p>average {(good - bad) / clicks}</p>
-  )
-}
-
-const Positive = ({good, clicks}) => {
-  return (
-    <p>positive {(good / clicks) * 100} %</p>
   )
 }
 
