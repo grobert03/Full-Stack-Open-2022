@@ -2,8 +2,8 @@
 
 | **Part** | **Status** | **Date**  |
 |:--------:|:----------:|:---------:|
-| 0        |  Finished  | 18 Nov 22 |
-| 1        |            |           |
+| 0        |  Finished ([see solutions](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part0))  | 18 Nov 22 |
+| 1        |Finished [(see solutions)](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part1)|  13 Dec 22  |
 | 2        |            |           |
 | 3        |            |           |
 | 4        |            |           |
@@ -27,11 +27,11 @@
 
 | **Lesson**                                 | **Status** |
 |:-------------------------------------------|:----------:|
-|            Introduction to React           |            |
-|                 JavaScript                 |            |
-| Component state, event handlers            |            |
-| A more complex state, debugging React apps |            |
-| **Finished in:**         | |
+|            Introduction to React           |  Finished  |
+|                 JavaScript                 |  Finished  |
+| Component state, event handlers            |  Finished  |
+| A more complex state, debugging React apps |  Finished  |
+| **Finished in:**         | **6 hours**|
 
 ## Part 2
 
