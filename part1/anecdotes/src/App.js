@@ -25,12 +25,28 @@ const App = () => {
     setVotes(copy);
   }
 
+  const returnMostVotes = () => {
+    let highestNumber = votes[0];
+    let index = 0;
+    for (let i = 1; i < votes.length; i++) {
+      console.log(votes);
+      if (votes[i] > highestNumber) {
+        highestNumber = votes[i];
+        index = i;
+      }
+    }
+    return index;
+  }
+
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       <Anecdote selected={selected} text={anecdotes}/>
       <Votes selected={selected} array={votes}/>
       <Button clickHandler={() => vote(selected)} text="vote"/>
       <Button clickHandler={generateNumber} text="next anecdote"/>
+      <h2>Anecdote with most votes</h2>
+      <Anecdote selected={returnMostVotes()} text={anecdotes}/>
     </div>
   )
 }
