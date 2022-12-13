@@ -5,8 +5,6 @@ const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [clicks, setClicks] = useState(0);
-  const [avg, setAvg] = useState(0);
-  const [positive, setPositive] = useState(0);
 
   const goodClicked = () => {
     setGood(good + 1);
@@ -33,6 +31,14 @@ const App = () => {
 
       <Header value="Statistics"/>
 
+      <Statistics good={good} bad={bad} neutral={neutral} clicks={clicks}/>
+    </div>
+  )
+}
+
+const Statistics = ({good, bad, neutral, clicks}) => {
+  return (
+    <div>
       <Display value={good} text="good"/>
       <Display value={neutral} text="neutral"/>
       <Display value={bad} text="bad"/>
