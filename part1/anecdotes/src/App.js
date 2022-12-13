@@ -12,16 +12,24 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Array(7).fill(0));
 
   const generateNumber = () => {
     let number = Math.floor(Math.random() * anecdotes.length);
-    console.log(number);
     setSelected(number);
+  }
+
+  const vote = (selected) => {
+    let copy = [...votes];
+    copy[selected] += 1;
+    setVotes(copy);
   }
 
   return (
     <div>
       <Anecdote selected={selected} text={anecdotes}/>
+      <Votes selected={selected} array={votes}/>
+      <Button clickHandler={() => vote(selected)} text="vote"/>
       <Button clickHandler={generateNumber} text="next anecdote"/>
     </div>
   )
@@ -33,6 +41,10 @@ const Button = ({clickHandler, text}) => {
 
 const Anecdote = ({selected, text}) => {
   return <p>{text[selected]}</p>
+}
+
+const Votes = ({selected, array}) => {
+  return <p>has {array[selected]} votes</p>
 }
 
 export default App;
