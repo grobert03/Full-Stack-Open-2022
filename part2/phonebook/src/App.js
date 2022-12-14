@@ -40,26 +40,43 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with <input onChange={handleFilter}/>
-      </div>
+      <Filter changeHandler={handleFilter}/>
       <h2>add a new</h2>
-      <form onSubmit={addPerson}>
+      <PersonForm submitHandler={addPerson} nameHandler={handleNameChange} numberHandler={handleNumberChange}/>
+      <h2>Numbers</h2>
+      <Persons toShow={personsToShow}/>
+    </div>
+  )
+}
+
+const Filter = ({changeHandler}) => {
+  return (
+    <div>
+    filter shown with <input onChange={changeHandler}/>
+    </div>
+  )
+}
+
+const PersonForm = ({submitHandler, nameHandler, numberHandler}) => {
+  return (
+    <form onSubmit={submitHandler}>
         <div>
-          name: <input onChange={handleNameChange}/>
+          name: <input onChange={nameHandler}/>
         </div>
         <div>
-          number: <input onChange={handleNumberChange}/>
+          number: <input onChange={numberHandler}/>
         </div>
         <div>
           <button type="submit">add</button>
         </div>
-      </form>
-      <h2>Numbers</h2>
-      <div>
-        {personsToShow.map(element => <Person key={element.id} name={element.name} number={element.number}/>)}
-      </div>
+    </form>
+  )
+}
 
+const Persons = ({toShow}) => {
+  return (
+    <div>
+      {toShow.map(element => <Person key={element.id} name={element.name} number={element.number}/>)}
     </div>
   )
 }
@@ -67,5 +84,6 @@ const App = () => {
 const Person = ({name, number}) => {
   return <li>{name} {number}</li>
 }
+
 
 export default App;
