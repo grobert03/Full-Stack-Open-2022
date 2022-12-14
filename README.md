@@ -39,8 +39,8 @@
 
 | **Lesson**                      | **Status** |
 |:--------------------------------|:----------:|
-| Rendering a collection, modules |            |
-|              Forms              |            |
+| Rendering a collection, modules |  Finished  |
+|              Forms              |  Finished  |
 | Getting data from server        |            |
 | Altering data in server         |            |
 | Adding styles to React app      |            |
