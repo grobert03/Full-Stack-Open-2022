@@ -8,7 +8,12 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault();
-    setPersons(persons.concat({name: newName}));
+    // Check if name already exists
+    if (persons.filter(person => JSON.stringify(person) === JSON.stringify({name: newName})).length === 0) {
+      setPersons(persons.concat({name: newName}));
+    } else {
+      alert(`${newName} is already added to phonebook`);
+    }
   }
 
   const handleNameChange = (event) => {
