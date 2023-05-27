@@ -32,7 +32,11 @@ const App = () => {
         `${newName} is already added to phonebook, replace the old number with the new one?`
       );
       if (confirmar) {
-        personService.update(userId, { ...newObject, id: userId }).then(response => setPersons(persons.map(p => p.id == userId ? response : p)));
+        personService
+          .update(userId, { ...newObject, id: userId })
+          .then((response) =>
+            setPersons(persons.map((p) => (p.id == userId ? response : p)))
+          );
       }
     }
   };
