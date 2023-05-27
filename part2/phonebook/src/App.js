@@ -13,23 +13,27 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
-
+    let newObject = {
+      name: newName,
+      number: newNumber,
+      id: persons.length + 1,
+    };
     // Check if name already exists
-    if (
-      persons.filter(
-        (person) => JSON.stringify(person.name) === JSON.stringify(newName)
-      ).length === 0
-    ) {
-      let newObject = {
-        name: newName,
-        number: newNumber,
-        id: persons.length + 1,
-      };
+    let user = persons.filter(
+      (person) => JSON.stringify(person.name) === JSON.stringify(newName)
+    );
+    if (user.length === 0) {
       personService.create(newObject).then((newObject) => {
         setPersons(persons.concat(newObject));
       });
     } else {
-      alert(`${newName} is already added to phonebook`);
+      let userId = user[0].id;
+      let confirmar = window.confirm(
+        `${newName} is already added to phonebook, replace the old number with the new one?`
+      );
+      if (confirmar) {
+        personService.update(userId, { ...newObject, id: userId }).then(response => setPersons(persons.map(p => p.id == userId ? response : p)));
+      }
     }
   };
 
@@ -63,7 +67,11 @@ const App = () => {
         numberHandler={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons setPersons={setPersons} toShow={personsToShow} persons={persons} />
+      <Persons
+        setPersons={setPersons}
+        toShow={personsToShow}
+        persons={persons}
+      />
     </div>
   );
 };
@@ -96,12 +104,12 @@ const Persons = ({ toShow, setPersons, persons }) => {
   return (
     <div>
       {toShow.map((element) => (
-          <Person
-            key={element.id}
-            person={element}
-            setPersons={setPersons}
-            persons={persons}
-          />
+        <Person
+          key={element.id}
+          person={element}
+          setPersons={setPersons}
+          persons={persons}
+        />
       ))}
     </div>
   );
@@ -110,7 +118,14 @@ const Persons = ({ toShow, setPersons, persons }) => {
 const Person = ({ person, setPersons, persons }) => {
   return (
     <li>
-      {person.name} {person.number} <DeleteButton key={'boton-' + person.id} setPersons={setPersons} name={person.name} id={person.id} persons={persons}  />
+      {person.name} {person.number}{" "}
+      <DeleteButton
+        key={"boton-" + person.id}
+        setPersons={setPersons}
+        name={person.name}
+        id={person.id}
+        persons={persons}
+      />
     </li>
   );
 };
@@ -119,9 +134,11 @@ const DeleteButton = ({ id, setPersons, persons, name }) => {
   const clickHandler = () => {
     let mensaje = `Delete ${name}?`;
     if (window.confirm(mensaje)) {
-      personService.deletePerson(id).then(response => setPersons(persons.filter((e) => e.id != id)));
+      personService
+        .deletePerson(id)
+        .then((response) => setPersons(persons.filter((e) => e.id != id)));
     }
-  }
+  };
   return <button onClick={clickHandler}>delete</button>;
 };
 export default App;
