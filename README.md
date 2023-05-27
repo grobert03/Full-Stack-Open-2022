@@ -4,7 +4,7 @@
 |:--------:|:----------:|:---------:|
 | 0        |  Finished ([see solutions](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part0))  | 18 Nov 22 |
 | 1        |Finished [(see solutions)](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part1)|  13 Dec 22  |
-| 2        |            |           |
+| 2        |Finished [(see solutions)](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part2)       | 27 May 23|
 | 3        |            |           |
 | 4        |            |           |
 | 5        |            |           |
@@ -41,10 +41,10 @@
 |:--------------------------------|:----------:|
 | Rendering a collection, modules |  Finished  |
 |              Forms              |  Finished  |
-| Getting data from server        |            |
-| Altering data in server         |            |
-| Adding styles to React app      |            |
-| **Finished in:**         | |
+| Getting data from server        |  Finished  |
+| Altering data in server         |  Finished  |
+| Adding styles to React app      |  Finished  |
+| **Finished in:**         | **8 hours** |
 
 ## Part 3
 
