@@ -1,8 +1,17 @@
 .notification {
     border: 2px solid green;
-    border-radius: 1em;
-    padding: 10px;
+    border-radius: 0.5em;
+    padding: 15px;
     color: green;
+    background-color: lightgray;
+    font-size: 18px;
+}
+
+.error {
+    border: 2px solid red;
+    border-radius: 0.5em;
+    padding: 15px;
+    color: red;
     background-color: lightgray;
     font-size: 18px;
 }

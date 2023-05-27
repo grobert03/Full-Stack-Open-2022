@@ -7,9 +7,13 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
   const [notificationMessage, setNotification] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    personService.getAll().then((initialNotes) => setPersons(initialNotes)).catch(error => console.log(error));
+    personService
+      .getAll()
+      .then((initialNotes) => setPersons(initialNotes))
+      .catch((error) => console.log(error));
   }, []);
 
   const addPerson = (event) => {
@@ -45,6 +49,12 @@ const App = () => {
             setTimeout(() => {
               setNotification(null);
             }, 3000);
+          })
+          .catch((error) => {
+            setErrorMessage(`${newName} has been removed from the server!`);
+            setTimeout(() => {
+              setErrorMessage(null);
+            }, 3000);
           });
       }
     }
@@ -72,6 +82,7 @@ const App = () => {
   return (
     <div>
       <Notification text={notificationMessage} />
+      <Error text={errorMessage} />
       <h2>Phonebook</h2>
       <Filter changeHandler={handleFilter} />
       <h2>add a new</h2>
@@ -95,6 +106,14 @@ const Notification = ({ text }) => {
     return null;
   } else {
     return <div className="notification">{text}</div>;
+  }
+};
+
+const Error = ({ text }) => {
+  if (text == null) {
+    return null;
+  } else {
+    return <div className="error">{text}</div>;
   }
 };
 
