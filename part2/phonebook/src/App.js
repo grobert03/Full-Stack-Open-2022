@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import personService from "./services/persons";
+import persons from "./services/persons";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
@@ -62,7 +63,7 @@ const App = () => {
         numberHandler={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons toShow={personsToShow} />
+      <Persons setPersons={setPersons} toShow={personsToShow} persons={persons} />
     </div>
   );
 };
@@ -91,22 +92,36 @@ const PersonForm = ({ submitHandler, nameHandler, numberHandler }) => {
   );
 };
 
-const Persons = ({ toShow }) => {
+const Persons = ({ toShow, setPersons, persons }) => {
   return (
     <div>
       {toShow.map((element) => (
-        <Person key={element.id} name={element.name} number={element.number} />
+          <Person
+            key={element.id}
+            person={element}
+            setPersons={setPersons}
+            persons={persons}
+          />
       ))}
     </div>
   );
 };
 
-const Person = ({ name, number }) => {
+const Person = ({ person, setPersons, persons }) => {
   return (
     <li>
-      {name} {number}
+      {person.name} {person.number} <DeleteButton key={'boton-' + person.id} setPersons={setPersons} name={person.name} id={person.id} persons={persons}  />
     </li>
   );
 };
 
+const DeleteButton = ({ id, setPersons, persons, name }) => {
+  const clickHandler = () => {
+    let mensaje = `Delete ${name}?`;
+    if (window.confirm(mensaje)) {
+      personService.deletePerson(id).then(response => setPersons(persons.filter((e) => e.id != id)));
+    }
+  }
+  return <button onClick={clickHandler}>delete</button>;
+};
 export default App;
