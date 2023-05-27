@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import personService from "./services/persons";
-import persons from "./services/persons";
+import "./notification.css";
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [notificationMessage, setNotification] = useState(null);
 
   useEffect(() => {
-    personService.getAll().then((initialNotes) => setPersons(initialNotes));
+    personService.getAll().then((initialNotes) => setPersons(initialNotes)).catch(error => console.log(error));
   }, []);
 
   const addPerson = (event) => {
@@ -25,6 +26,10 @@ const App = () => {
     if (user.length === 0) {
       personService.create(newObject).then((newObject) => {
         setPersons(persons.concat(newObject));
+        setNotification(`${newObject.name} was added to the list.`);
+        setTimeout(() => {
+          setNotification(null);
+        }, 3000);
       });
     } else {
       let userId = user[0].id;
@@ -34,9 +39,13 @@ const App = () => {
       if (confirmar) {
         personService
           .update(userId, { ...newObject, id: userId })
-          .then((response) =>
-            setPersons(persons.map((p) => (p.id == userId ? response : p)))
-          );
+          .then((response) => {
+            setPersons(persons.map((p) => (p.id == userId ? response : p)));
+            setNotification(`${newObject.name}'s phone was changed.`);
+            setTimeout(() => {
+              setNotification(null);
+            }, 3000);
+          });
       }
     }
   };
@@ -62,6 +71,7 @@ const App = () => {
 
   return (
     <div>
+      <Notification text={notificationMessage} />
       <h2>Phonebook</h2>
       <Filter changeHandler={handleFilter} />
       <h2>add a new</h2>
@@ -78,6 +88,14 @@ const App = () => {
       />
     </div>
   );
+};
+
+const Notification = ({ text }) => {
+  if (text == null) {
+    return null;
+  } else {
+    return <div className="notification">{text}</div>;
+  }
 };
 
 const Filter = ({ changeHandler }) => {
