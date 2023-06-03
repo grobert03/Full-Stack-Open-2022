@@ -28,13 +28,21 @@ const App = () => {
       (person) => JSON.stringify(person.name) === JSON.stringify(newName)
     );
     if (user.length === 0) {
-      personService.create(newObject).then((newObject) => {
-        setPersons(persons.concat(newObject));
-        setNotification(`${newObject.name} was added to the list.`);
-        setTimeout(() => {
-          setNotification(null);
-        }, 3000);
-      });
+      personService
+        .create(newObject)
+        .then((newObject) => {
+          setPersons(persons.concat(newObject));
+          setNotification(`${newObject.name} was added to the list.`);
+          setTimeout(() => {
+            setNotification(null);
+          }, 3000);
+        })
+        .catch((err) => {
+          setErrorMessage(`${err.response.data.error}`);
+          setTimeout(() => {
+            setErrorMessage(null);
+          }, 3000);
+        });
     } else {
       let userId = user[0].id;
       let confirmar = window.confirm(
@@ -44,14 +52,15 @@ const App = () => {
         personService
           .update(userId, { ...newObject, id: userId })
           .then((response) => {
-            setPersons(persons.map((p) => (p.id == userId ? response : p)));
+            console.log(response);
+            setPersons(persons.map((p) => (p.id === userId ? response : p)));
             setNotification(`${newObject.name}'s phone was changed.`);
             setTimeout(() => {
               setNotification(null);
             }, 3000);
           })
-          .catch((error) => {
-            setErrorMessage(`${newName} has been removed from the server!`);
+          .catch((err) => {
+            setErrorMessage(`${err.response.data.error}`);
             setTimeout(() => {
               setErrorMessage(null);
             }, 3000);
