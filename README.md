@@ -5,7 +5,7 @@
 | 0        |  Finished ([see solutions](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part0))  | 18 Nov 22 |
 | 1        |Finished [(see solutions)](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part1)|  13 Dec 22  |
 | 2        |Finished [(see solutions)](https://github.com/grobert03/Full-Stack-Open-2022/tree/main/part2)       | 27 May 23|
-| 3        |            |           |
+| 3        |Finished [(see solutions)](https://github.com/grobert03/Full-Stack-Open-Part3)| 4 Jun 23 |
 | 4        |            |           |
 | 5        |            |           |
 | 6        |            |           |
@@ -53,11 +53,11 @@
 
 | **Lesson**                | **Status** |
 |:--------------------------|:----------:|
-|    Node.js and Express    |            |
-| Deploying app to internet |            |
-| Saving data to MongoDB    |            |
-| Validation and ESLint     |            |
-| **Finished in:**         | |
+|    Node.js and Express    |  Finished  |
+| Deploying app to internet |  Finished  |
+| Saving data to MongoDB    |  Finished  |
+| Validation and ESLint     |  Finished  |
+| **Finished in:**         | **15 hours** |
 
 ## Part 4
 
