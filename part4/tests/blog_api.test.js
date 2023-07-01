@@ -51,11 +51,31 @@ test("blog post is added (4.10)", async () => {
     likes: 1,
   };
   const response = await api.post("/api/blogs").send(newPost);
-  
+
   const blogs = await api.get("/api/blogs");
 
   expect(blogs.body).toHaveLength(3);
   expect(response.body.title).toEqual("Test3");
+});
+
+test("verifies the like property (4.11)", async () => {
+  const newPost = {
+    title: "Test3",
+    author: "Robert",
+    url: "test3",
+  };
+  const response = await api.post("/api/blogs").send(newPost);
+  expect(response.body.likes).toEqual(0);
+});
+
+test("verifies title/url (4.12)", async () => {
+    const newPost = {
+        title: "Test3",
+        author: "Robert",
+        url: "test3",
+      };
+      const response = await api.post("/api/blogs").send(newPost);
+    expect(response.status).toEqual(400);
 });
 
 afterAll(async () => {
