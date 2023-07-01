@@ -3,10 +3,11 @@ const User = require("../models/user");
 const mongoose = require("mongoose");
 const supertest = require("supertest");
 const app = require("../app");
+const { after } = require("lodash");
 const api = supertest(app);
 //...
 
-describe("when there is initially one user in db", () => {
+describe("creating an user", () => {
   beforeEach(async () => {
     await User.deleteMany({});
 
@@ -16,25 +17,34 @@ describe("when there is initially one user in db", () => {
     await user.save();
   });
 
-  test("creation succeeds with a fresh username", async () => {
-    const usersAtStart = await helper.usersInDb();
-
+  test("username is required", async () => {
     const newUser = {
-      username: "mluukkai",
-      name: "Matti Luukkainen",
-      password: "salainen",
-    };
+        "username": "xd",
+        "name": "Willy",
+        "password": "4321"
+    }
 
-    await api
-      .post("/api/users")
-      .send(newUser)
-      .expect(201)
-      .expect("Content-Type", /application\/json/);
+    const response = await api.post("/api/users").send(newUser);
+    console.log(response.body);
 
-    const usersAtEnd = await helper.usersInDb();
-    expect(usersAtEnd).toHaveLength(usersAtStart.length + 1);
+    expect(response.status).toEqual(400);
 
-    const usernames = usersAtEnd.map((u) => u.username);
-    expect(usernames).toContain(newUser.username);
-  });
+  })
+
+  test("password is required", async () => {
+    const newUser = {
+        "username": "Willy232",
+        "name": "Willy",
+        "password": "xdc"
+    }
+
+    const response = await api.post("/api/users").send(newUser);
+    console.log(response.body);
+    expect(response.status).toEqual(400);
+
+  })
 });
+
+afterAll(async () => {
+    await mongoose.connection.close()
+  });
