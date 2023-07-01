@@ -2,7 +2,6 @@ const blogRouter = require("express").Router();
 const Blog = require("../models/blog");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const jwtDecode = require("jwt-decode");
 
 blogRouter.get("/", async (request, response) => {
   const blogs = await Blog.find({}).populate("user", { blogs: 0 });
@@ -38,8 +37,8 @@ blogRouter.post("/", async (request, response) => {
 blogRouter.delete("/:id", async (request, response) => {
   const id = request.params.id;
   const blog = await Blog.findById(id);
-  if (!request.token || blog.user.toString() != jwtDecode(request.token).id) {
-    response.status(404).json({ error: "You are not the author of the post." });
+  if (!request.user || blog.user.toString() != request.user) {
+    return response.status(404).json({ error: "You are not the author of the post." });
   }
   try {
     const deleted = await Blog.findByIdAndDelete(id);

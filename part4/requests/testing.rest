@@ -19,9 +19,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imdyb
 }
 ###
 
-DELETE http://localhost:3003/api/blogs/64a03715bb0c56cf6e2d3b14
+DELETE http://localhost:3003/api/blogs/64a00bb9d6765bf9eb866e07
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imdyb2JlcnQiLCJpZCI6IjY0OWZmZTBhNDAwOGY1YWFiODkwNTU1MSIsImlhdCI6MTY4ODIyMjAyMywiZXhwIjoxNjg4MjI1NjIzfQ.eYq1J210Bbr27Vz2mNbT86v17AJ5NREpVj3W5xYr2ts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndpbGx5MjMiLCJpZCI6IjY0OWZmZTkzMWRjMDdlNDcxYzFkZjVhZCIsImlhdCI6MTY4ODIyMjQ4MywiZXhwIjoxNjg4MjI2MDgzfQ.zc4jMc7184sWxMO6liPOaNJ502saSxwgylSH9wI0rO4
 
 ###
 
@@ -29,6 +29,6 @@ POST http://localhost:3003/api/login
 Content-Type: application/json
 
 {
-    "username": "grobert",
+    "username": "willy23",
     "password": "1234"
 }

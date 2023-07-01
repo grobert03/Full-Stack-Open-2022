@@ -1,4 +1,6 @@
 const logger = require("./logger");
+const jwtDecode = require("jwt-decode");
+
 
 const requestLogger = (request, response, next) => {
   logger.info("Method:", request.method);
@@ -40,9 +42,20 @@ const tokenExtractor = (request, response, next) => {
   next();
 }
 
+const userExtractor = (request, response, next) => {
+  if (request.token) {
+    request.user = jwtDecode(request.token).id
+  } else {
+    request.user = null;
+  }
+  
+  next();
+}
+
 module.exports = {
   requestLogger,
   unknownEndpoint,
   errorHandler,
-  tokenExtractor
+  tokenExtractor,
+  userExtractor
 };
