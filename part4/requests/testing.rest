@@ -9,10 +9,10 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndpbGx5MjMiLCJpZCI6IjY0OWZmZTkzMWRjMDdlNDcxYzFkZjVhZCIsImlhdCI6MTY4ODIyMDkwNiwiZXhwIjoxNjg4MjI0NTA2fQ.ZaevFjXBlTW4g8evkIkAy2adcchrmjyWC1P36nTdXLs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imdyb2JlcnQiLCJpZCI6IjY0OWZmZTBhNDAwOGY1YWFiODkwNTU1MSIsImlhdCI6MTY4ODIyMTQ1MiwiZXhwIjoxNjg4MjI1MDUyfQ.RNxFtN0SVzqS8cVTcLtFFGCO8jrSyo-4J_2T9XXnQBw
 
 {
-    "title": "Prueba233",
+    "title": "Prueba233a",
     "author": "Floppa",
     "likes": 3,
     "url": "http://google.com"
