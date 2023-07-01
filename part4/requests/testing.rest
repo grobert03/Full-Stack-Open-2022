@@ -10,9 +10,18 @@ Content-Type: application/json
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
+
 {
     "title": "Prueba",
     "author": "Floppa",
     "likes": 3,
     "url": "http://google.com"
+}
+###
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "grobert",
+    "password": "1234"
 }
