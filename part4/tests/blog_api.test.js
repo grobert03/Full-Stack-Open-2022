@@ -37,6 +37,13 @@ test("returns all of the posts (4.8)", async () => {
     expect(response.body).toHaveLength(2);
 })
 
+test("identifier is named id (4.9)", async () => {
+    const response = await api.get('/api/blogs');
+    response.body.forEach(r => {
+        expect(r.id).toBeDefined();
+    })
+});
+
 afterAll(async () => {
   await mongoose.connection.close();
 });
