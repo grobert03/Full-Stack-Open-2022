@@ -70,6 +70,7 @@ test("updates successfully (4.14)", async () => {
         title: "newPost",
         author: "new",
         url: "new",
+        likes: 2
       };
     const id = "649fab9fda64c632454678b1";
     const response = await api.put(`/api/blogs/${id}`).send(newPost);
