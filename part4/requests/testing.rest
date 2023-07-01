@@ -9,10 +9,10 @@ Content-Type: application/json
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndpbGx5MjMiLCJpZCI6IjY0OWZmZTkzMWRjMDdlNDcxYzFkZjVhZCIsImlhdCI6MTY4ODIyMDkwNiwiZXhwIjoxNjg4MjI0NTA2fQ.ZaevFjXBlTW4g8evkIkAy2adcchrmjyWC1P36nTdXLs
 
 {
-    "title": "Prueba",
+    "title": "Prueba233",
     "author": "Floppa",
     "likes": 3,
     "url": "http://google.com"
