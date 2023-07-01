@@ -1,20 +1,31 @@
 const blogRouter = require("express").Router();
 const Blog = require("../models/blog");
-const { nonExistingId } = require("../tests/test_helper");
+const User = require("../models/user");
 
 blogRouter.get("/", async (request, response) => {
-  const blogs = await Blog.find({})
+  const blogs = await Blog.find({}).populate('user', {blogs: 0})
   response.json(blogs);
 });
 
 blogRouter.post("/", async (request, response) => {
-  const blog = new Blog(request.body);
   if (request.body.title === undefined || request.body.url === undefined) {
     response.status(400).end();
     return;
   }
 
+  const user = await User.findOne();
+
+  const blog = new Blog({
+    "title": request.body.title,
+    "author": request.body.author,
+    "likes": request.body.likes,
+    "url": request.body.url,
+    "user": user._id
+  });
+
   const result = await blog.save();
+  user.blogs = user.blogs.concat(result);
+  await user.save();
   response.status(201).json(result);
 });
 

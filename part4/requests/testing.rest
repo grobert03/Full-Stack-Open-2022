@@ -6,3 +6,13 @@ Content-Type: application/json
     "name": "Willy",
     "password": "4321"
 }
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Prueba",
+    "author": "Floppa",
+    "likes": 3,
+    "url": "http://google.com"
+}
