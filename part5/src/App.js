@@ -14,6 +14,9 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
   const [user, setUser] = useState(null);
+  const [newTitle, setNewTitle] = useState(null);
+  const [newAuthor, setNewAuthor] = useState(null);
+  const [newUrl, setNewUrl] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,10 +28,11 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedUser');
+    const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
+      blogService.setToken(user.token);
     }
   }, []);
 
@@ -37,8 +41,9 @@ const App = () => {
 
     try {
       const user = await loginService.login({ username, password });
+      blogService.setToken(user.token);
       setUser(user);
-      window.localStorage.setItem('loggedUser', JSON.stringify(user));
+      window.localStorage.setItem("loggedUser", JSON.stringify(user));
       setUsername("");
       setPassword("");
       setMessage("Welcome back!");
@@ -50,16 +55,30 @@ const App = () => {
       setTimeout(() => {
         setErrorMessage("");
       }, 3000);
-      
     }
     console.log("loggin in with", username, password);
   };
 
   const logUserOut = () => {
-    window.localStorage.removeItem('loggeedUser');
+    window.localStorage.removeItem("loggeedUser");
     window.localStorage.clear();
     setUser(null);
-  }
+  };
+
+  const createBlog = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await blogService.create({title: newTitle, author: newAuthor, url: newUrl});
+      console.log('ok')
+      setBlogs(blogs.concat(result))
+      setMessage(`Added ${result.title} by ${result.author}`);
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    } catch (exception) {
+      console.log(exception);
+    }
+  };
 
   const loginForm = () => (
     <div>
@@ -98,7 +117,44 @@ const App = () => {
   const showBlogs = () => (
     <div>
       <h2>Blogs</h2>
-      <p>{user.username} logged in.</p><button onClick={logUserOut}>Log out</button>
+      <p>{user.username} logged in.</p>
+      <button onClick={logUserOut}>Log out</button>
+      <div>
+        <h3>Create a new Blog</h3>
+        <form onSubmit={createBlog}>
+          <p>
+            title:
+            <input
+              type="text"
+              name="title"
+              onChange={({ target }) => {
+                setNewTitle(target.value);
+              }}
+            ></input>
+          </p>
+          <p>
+            author:
+            <input
+              type="text"
+              name="author"
+              onChange={({ target }) => {
+                setNewAuthor(target.value);
+              }}
+            ></input>
+          </p>
+          <p>
+            url:
+            <input
+              type="text"
+              name="url"
+              onChange={({ target }) => {
+                setNewUrl(target.value);
+              }}
+            ></input>
+          </p>
+          <button type="submit">Create</button>
+        </form>
+      </div>
       {blogs.map((b) => (
         <Blog key={b.id} blog={b} />
       ))}
@@ -110,8 +166,7 @@ const App = () => {
       <Message message={message}></Message>
       <ErrorMessage error={errorMessage}></ErrorMessage>
 
-      {user === null && loginForm()}
-      {user !== null && showBlogs()}
+      {user === null ? loginForm() : showBlogs()}
     </div>
   );
 };
