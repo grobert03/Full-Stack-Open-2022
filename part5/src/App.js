@@ -74,7 +74,7 @@ const App = () => {
     e.preventDefault();
     try {
       const result = await blogService.create({title: newTitle, author: newAuthor, url: newUrl});
-      console.log('ok')
+      console.log('result: ',result)
       setBlogs(blogs.concat(result))
       setNewAuthor("");
       setNewTitle("");

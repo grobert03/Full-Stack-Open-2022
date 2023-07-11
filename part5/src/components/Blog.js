@@ -18,7 +18,7 @@ const Blog = ({ blog }) => {
         {blog.url}
       </div>
       <div>
-        {blog.author}
+        {blog.user.name}
       </div>
     </div>);
   }
