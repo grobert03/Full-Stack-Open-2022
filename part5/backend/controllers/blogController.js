@@ -37,4 +37,23 @@ blogsRouter.post("/", async (request, response) => {
   await user.save();
   response.status(201).json(result);
 });
+
+blogsRouter.put("/:id", async (request, res) => {
+  let id = request.params.id;
+  let newObject = {...request.body};
+  let foundBlog = await Blog.findById(id);
+
+  newObject.likes = foundBlog.likes + 1;
+  newObject.user = newObject.user.id;
+
+  try {
+    await Blog.findByIdAndUpdate(id, newObject);
+    res.status(200).json(newObject);
+  } catch (exception) {
+    res.status(400).json(exception);
+  }
+  
+  
+});
+
 module.exports = blogsRouter;

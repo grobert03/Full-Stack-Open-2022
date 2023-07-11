@@ -64,6 +64,10 @@ const App = () => {
     console.log("loggin in with", username, password);
   };
 
+  const handleLike = (blog) => {
+    blogService.like(blog);
+  }
+
   const logUserOut = () => {
     window.localStorage.removeItem("loggeedUser");
     window.localStorage.clear();
@@ -132,8 +136,8 @@ const App = () => {
       <Togglable buttonLabel='create' ref={blogFormRef}>
         <BlogForm createBlog={createBlog} setNewTitle={setNewTitle} setNewAuthor={setNewAuthor} setNewUrl={setNewUrl}/>
       </Togglable>
-      {blogs.map((b) => (
-        <Blog key={b.id} blog={b} />
+      {blogs.sort((a,b) => a.likes < b.likes).map((b) => (
+        <Blog user={user} clickHandler={handleLike} key={b.id} blog={b} />
       ))}
     </div>
   );
