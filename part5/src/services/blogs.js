@@ -10,21 +10,21 @@ const getAll = async () => {
 
 const setToken = (newToken) => {
   token = `Bearer ${newToken}`;
-}
+};
 
 const create = async (newObject) => {
-  console.log("token:", token)
+  console.log("token:", token);
   const config = {
-    headers: {Authorization: token}
-  }
+    headers: { Authorization: token },
+  };
 
   const response = await axios.post(baseUrl, newObject, config);
   return response.data;
-}
+};
 
 const like = async (post) => {
   const response = await axios.put(baseUrl + `/${post.id}`, post);
   return response.data;
-}
+};
 
-export default {getAll, create, setToken, like};
+export default { getAll, create, setToken, like };

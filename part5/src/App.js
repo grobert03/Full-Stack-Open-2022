@@ -17,9 +17,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [message, setMessage] = useState("");
   const [user, setUser] = useState(null);
-  const [newTitle, setNewTitle] = useState(null);
-  const [newAuthor, setNewAuthor] = useState(null);
-  const [newUrl, setNewUrl] = useState(null);
 
   const blogFormRef = useRef();
 
@@ -66,7 +63,7 @@ const App = () => {
 
   const handleLike = (blog) => {
     blogService.like(blog);
-  }
+  };
 
   const logUserOut = () => {
     window.localStorage.removeItem("loggeedUser");
@@ -74,15 +71,10 @@ const App = () => {
     setUser(null);
   };
 
-  const createBlog = async (e) => {
-    e.preventDefault();
+  const createBlog = async (newObject) => {
     try {
-      const result = await blogService.create({title: newTitle, author: newAuthor, url: newUrl});
-      console.log('result: ',result)
-      setBlogs(blogs.concat(result))
-      setNewAuthor("");
-      setNewTitle("");
-      setNewUrl("");
+      const result = await blogService.create(newObject);
+      setBlogs(blogs.concat(result));
 
       setMessage(`Added ${result.title} by ${result.author}`);
       setTimeout(() => {
@@ -133,12 +125,14 @@ const App = () => {
       <h2>Blogs</h2>
       <p>{user.username} logged in.</p>
       <button onClick={logUserOut}>Log out</button>
-      <Togglable buttonLabel='create' ref={blogFormRef}>
-        <BlogForm createBlog={createBlog} setNewTitle={setNewTitle} setNewAuthor={setNewAuthor} setNewUrl={setNewUrl}/>
+      <Togglable buttonLabel="create" ref={blogFormRef}>
+        <BlogForm createBlog={createBlog} />
       </Togglable>
-      {blogs.sort((a,b) => a.likes < b.likes).map((b) => (
-        <Blog user={user} clickHandler={handleLike} key={b.id} blog={b} />
-      ))}
+      {blogs
+        .sort((a, b) => a.likes < b.likes)
+        .map((b) => (
+          <Blog user={user} clickHandler={handleLike} key={b.id} blog={b} />
+        ))}
     </div>
   );
 

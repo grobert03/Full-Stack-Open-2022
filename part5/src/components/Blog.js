@@ -18,9 +18,10 @@ const Blog = ({ blog, clickHandler, user }) => {
   const showDetails = () => {
     return (
       <div>
-        <div>
+        <div className="details">
           {likes}
           <button
+            className="likeButton"
             onClick={() => {
               clickHandler(blog);
               setLikes(likes + 1);
@@ -47,8 +48,8 @@ const Blog = ({ blog, clickHandler, user }) => {
   };
   return (
     <div style={blogStyle}>
-      <div>
-        {blog.title} {blog.author}{" "}
+      <div className="author">
+        {blog.title} {blog.author}
         <button
           onClick={() => {
             setVisibility(!visible);
